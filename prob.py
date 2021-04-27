@@ -30,9 +30,9 @@ def calc_means(samp_sizes, estimates):
 
 # Holds our dict containing sample means
 data = calc_means(runs, 550)
+# print(data)
 means = {'5': 0, '10': 0, '15': 0, '30': 0}
 mu = []
-
 
 # 2.1 calculate mean
 def mean_est(default=data):
@@ -73,20 +73,34 @@ def znk():
     return d  # ret a dict
 
 
-mean_est()
-var_est()
-znk()
 # 2.3 estimate prob of 7 events
 z_vals = {-1.4: 0.0808, -1: 0.1587, -0.5: 0.3085, 0: 0.5, 0.5: 0.6915, 1: 0.8413, 1.4: 0.9192}
-
-
-# estimate prob of 7 events
+est =[]
 def estimate():
-    for vals in d.keys():
-        for nums in z_vals.keys():
-            pass
-    return  # finish
+    for nums in z_vals.values(): #compare with z scores
+        count = 0
+        for vals in d.values():
+            if vals < nums:
+                count+=1
+        est.append(count/550)
+    return  est #
 
-# print("mean: " , mean_est())
-# print("variance: " , var_est())
-# print(znk())
+#2.4
+zj =[-1.4,-1,-0.5,0,0.5,1,1.4]
+mad_lst=[]
+md_lst1=[]
+def mad():
+    for i in range(0,len(est)):
+        for j in range(0,len(zj)):
+            mad_lst.append(abs(est[i]-zj[j]))
+        md_lst1.append(max(mad_lst))
+        # md_lst1.clear()
+        mad_lst.clear()
+    return md_lst1
+
+print("mean: " , mean_est())
+print("variance: " , var_est())
+print("zn(k) values: ", znk())
+print("prob of 7 events", estimate())
+print("mad",mad())
+
