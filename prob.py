@@ -230,6 +230,7 @@ print("zn(k) values: ", znk())
 print("prob of 7 events", estimate())
 print("mad",mad())
 
+#graphs key: mad: green estimates: red normal cdf: blue
 import numpy as np
 import matplotlib.pyplot as plt
 
